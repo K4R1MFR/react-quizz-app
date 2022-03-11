@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Question from "./Question";
 import Confetti from "react-confetti";
-import loadingGIF from "../images/Spinner-loading-1s-200px.gif"
+import loadingGIF from "../images/Spinner-loading-1s-200px.gif";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Quizz() {
     const [data, setData] = useState([]);
@@ -53,15 +55,17 @@ export default function Quizz() {
         }
     }
 
+    const navigate = useNavigate();
     function reset() {
         fetch("https://opentdb.com/api.php?amount=5&encode=url3986")
             .then(response => response.json())
             .then(data => setData(data['results']))
         console.log('data fetched')
-        window.location.reload(true)
-        //setUserAnswers([])
-        //setIsAnswered(false)
-        //setScore(0)
+
+        navigate('/quizz')
+        setUserAnswers([])
+        setIsAnswered(false)
+        setScore(0)
     }
 
     if (isAnswered) {
@@ -81,7 +85,8 @@ export default function Quizz() {
                     {isAnswered ? <div>You scored {score}/{userAnswers.length} correct answers.</div> : ''}
                     <button
                         className="btn-check-answer"
-                        onClick={isAnswered ? reset : checkAnswers} >{isAnswered ? 'Play Again' : 'Check Answers'}</button>
+                        onClick={isAnswered ? reset : checkAnswers} >{isAnswered ? 'Play Again' : 'Check Answers'}
+                    </button>
                 </div>}
         </section>
     )
