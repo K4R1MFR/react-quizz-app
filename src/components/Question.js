@@ -14,9 +14,7 @@ export default function Question(props) {
 
 
     function selectAnswer(userSelectedAnswer) {
-        //console.log('userSelectedAnswer: ', userSelectedAnswer, 'allAnswers.correctAnswer: ', allAnswers.correctAnswer)
         setUserChoice(userSelectedAnswer);
-        //testing
         props.saveUserAnswers(props.question.question, userSelectedAnswer, props.question.correct_answer)
     }
 

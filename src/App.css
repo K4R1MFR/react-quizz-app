@@ -51,13 +51,23 @@ main {
 }
 
 .btn-answer-correct {
-  background-color: green;
+  background-color: lightgreen;
   border-radius: 20px;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+  color: #293264;
+  font-weight: bolder;
 }
 
 .btn-answer-incorrect {
-  background-color: red;
+  background-color: lightcoral;
   border-radius: 20px;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+  color: #293264;
+  font-weight: bolder;
 }
 
 .btn-check-answer {
