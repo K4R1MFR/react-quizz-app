@@ -12,14 +12,6 @@ export default function Question(props) {
     });
     const [userChoice, setUserChoice] = useState('');
 
-    function createAnswerObj(question, choices, correctAnswer) {
-        return {
-            question: question,
-            choices: choices,
-            userAnswer: '',
-            correctAnswer: correctAnswer
-        }
-    }
 
     function selectAnswer(userSelectedAnswer) {
         //console.log('userSelectedAnswer: ', userSelectedAnswer, 'allAnswers.correctAnswer: ', allAnswers.correctAnswer)
@@ -29,6 +21,15 @@ export default function Question(props) {
     }
 
     useEffect(() => {
+        function createAnswerObj(question, choices, correctAnswer) {
+            return {
+                question: question,
+                choices: choices,
+                userAnswer: '',
+                correctAnswer: correctAnswer
+            }
+        }
+
         const shuffleArray = array => array.map(a => ({ sort: Math.random(), value: a })).sort((a, b) => a.sort - b.sort).map(a => a.value);
         let choices = [];
         if (props.question.type === 'multiple') {
@@ -47,6 +48,7 @@ export default function Question(props) {
             setAllChoices(() => createAnswerObj(props.question.question, answers, props.question.correct_answer))
         }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

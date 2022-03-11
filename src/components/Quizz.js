@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Question from "./Question";
 import Confetti from "react-confetti";
+import loadingGIF from "../images/Spinner-loading-1s-200px.gif"
 
 export default function Quizz() {
     const [data, setData] = useState([]);
@@ -63,7 +64,7 @@ export default function Quizz() {
         <section>
             {data.length > 1 && score === data.length && <Confetti width={innerWidth} height={innerHeight} />}
             {data < 1 ?
-                'loading' :
+                <img src={loadingGIF} alt="loading gif" /> :
                 <div>
                     {questionElements}
                     {answered ? <div>You scored {score}/{userAnswers.length} correct answers.</div> : ''}
