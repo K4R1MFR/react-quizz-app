@@ -50,6 +50,16 @@ main {
   font-weight: bolder;
 }
 
+.btn-answer-correct {
+  background-color: green;
+  border-radius: 20px;
+}
+
+.btn-answer-incorrect {
+  background-color: red;
+  border-radius: 20px;
+}
+
 .btn-check-answer {
   padding: 10px;
   margin: 10px;
@@ -61,4 +71,9 @@ main {
   color: lightblue;
   font-size: large;
   font-weight: bolder;
+}
+
+.question {
+  vertical-align: middle;
+  display: inline-block;
 }

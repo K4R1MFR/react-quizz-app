@@ -7,7 +7,7 @@ export default function Quizz() {
     const [data, setData] = useState([]);
     const [userAnswers, setUserAnswers] = useState([]);
     const [score, setScore] = useState(0);
-    const [answered, setAnswered] = useState(false)
+    const [isAnswered, setIsAnswered] = useState(false)
 
     console.log('window rendered')
 
@@ -47,19 +47,30 @@ export default function Quizz() {
                     setScore(prevScore => prevScore + 1)
                 }
             }
-            setAnswered(true)
+            setIsAnswered(true)
         } else {
             alert('please answer all the questions first!')
         }
     }
 
     function reset() {
-        window.location.reload(true);
+        fetch("https://opentdb.com/api.php?amount=5&encode=url3986")
+            .then(response => response.json())
+            .then(data => setData(data['results']))
+        console.log('data fetched')
+        window.location.reload(true)
+        //setUserAnswers([])
+        //setIsAnswered(false)
+        //setScore(0)
+    }
+
+    if (isAnswered) {
+
     }
 
     const { innerWidth, innerHeight } = window;
 
-    const questionElements = data.map(x => <Question key={x.question} question={x} saveUserAnswers={saveUserAnswers} />)
+    const questionElements = data.map(x => <Question key={x.question} question={x} saveUserAnswers={saveUserAnswers} isAnswered={isAnswered} />)
     return (
         <section>
             {data.length > 1 && score === data.length && <Confetti width={innerWidth} height={innerHeight} />}
@@ -67,10 +78,10 @@ export default function Quizz() {
                 <img src={loadingGIF} alt="loading gif" /> :
                 <div>
                     {questionElements}
-                    {answered ? <div>You scored {score}/{userAnswers.length} correct answers.</div> : ''}
+                    {isAnswered ? <div>You scored {score}/{userAnswers.length} correct answers.</div> : ''}
                     <button
                         className="btn-check-answer"
-                        onClick={answered ? reset : checkAnswers} >{answered ? 'Play Again' : 'Check Answers'}</button>
+                        onClick={isAnswered ? reset : checkAnswers} >{isAnswered ? 'Play Again' : 'Check Answers'}</button>
                 </div>}
         </section>
     )

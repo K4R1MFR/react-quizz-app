@@ -50,15 +50,36 @@ export default function Question(props) {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+/*     console.log(props.question.correct_answer)
+    let content;
+    if (props.isAnswered) {
+        content = allChoices.choices && allChoices.choices.map(answer => <button
+            key={answer.value}
+            className={userChoice === props.question.correct_answer ? 'btn-answer-correct' : 'btn-answer'}
+            onClick={() => selectAnswer(answer.value)} >{decodeURIComponent(answer.value)}</button>)
 
-    return (
+    } else {
+        content = allChoices.choices && allChoices.choices.map(answer => <button
+            key={answer.value}
+            className={answer.value === userChoice ? 'btn-answer-selected' : 'btn-answer'}
+            onClick={() => selectAnswer(answer.value)} >{decodeURIComponent(answer.value)}</button>)
+
+    }
+
+ */    return (
         <div>
-            <p>{decodeURIComponent(props.question.question)}</p>
+            <p>
+                {props.isAnswered && <svg className="question" height="25" width="25">
+                    <circle cx="10" cy="10" r="8" stroke="#293264" stroke-width="1" fill={userChoice === props.question.correct_answer ? "green" : "red"} />
+                </svg>}
+                {decodeURIComponent(props.question.question)}
+            </p>
             {allChoices.choices && allChoices.choices.map(answer => <button
                 key={answer.value}
                 className={answer.value === userChoice ? 'btn-answer-selected' : 'btn-answer'}
-                //style={{ backgroundColor: answer.value === userChoice ? 'lightblue' : '' }}
                 onClick={() => selectAnswer(answer.value)} >{decodeURIComponent(answer.value)}</button>)}
+
+
             <hr />
         </div>
     )
