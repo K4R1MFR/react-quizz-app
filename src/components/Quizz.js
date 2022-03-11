@@ -76,7 +76,7 @@ export default function Quizz() {
 
     const questionElements = data.map(x => <Question key={x.question} question={x} saveUserAnswers={saveUserAnswers} isAnswered={isAnswered} />)
     return (
-        <section>
+        <main>
             {data.length > 1 && score === data.length && <Confetti width={innerWidth} height={innerHeight} />}
             {data < 1 ?
                 <img src={loadingGIF} alt="loading gif" /> :
@@ -88,6 +88,6 @@ export default function Quizz() {
                         onClick={isAnswered ? reset : checkAnswers} >{isAnswered ? 'Play Again' : 'Check Answers'}
                     </button>
                 </div>}
-        </section>
+        </main>
     )
 }

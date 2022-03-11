@@ -6,7 +6,7 @@ body {
   padding-top: 10px;
 }
 main {
-  margin: 0 auto;
+  margin: 0 10px 0 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
