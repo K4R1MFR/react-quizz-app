@@ -57,7 +57,8 @@ export default function Question(props) {
             key={answer.value}
             className={userChoice === props.question.correct_answer && userChoice === answer.value ?
                 'btn-answer-correct' :
-                userChoice === answer.value ? 'btn-answer-incorrect' : 'btn-answer'}
+                userChoice === answer.value ? 'btn-answer-incorrect' :
+                    userChoice !== props.question.correct_answer && answer.value === props.question.correct_answer ? 'btn-answer-correct' : 'btn-answer'}
             onClick={() => selectAnswer(answer.value)} >{decodeURIComponent(answer.value)}</button>)
 
     } else {

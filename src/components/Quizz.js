@@ -62,7 +62,7 @@ export default function Quizz() {
         //    .then(data => setData(data['results']))
         //console.log('data fetched')
 
-        navigate('/')
+        navigate('/') // essayer window.location.reload(); comme pour notepad qui n'utilise pas React Router 6 par contre
         //setUserAnswers([])
         //setIsAnswered(false)
         //setScore(0)
