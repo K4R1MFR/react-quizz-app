@@ -54,7 +54,7 @@ export default function Quizz() {
     }
 
     function reset() {
-        window.location.reload(false);
+        window.location.reload(true);
     }
 
     const { innerWidth, innerHeight } = window;

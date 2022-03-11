@@ -45,7 +45,7 @@ main {
   margin: 5px;
   padding: 5px;
   cursor: pointer;
-  background-color: loadingGIF;
+  background-color: #293264;
   color: lightblue;
   font-weight: bolder;
 }
