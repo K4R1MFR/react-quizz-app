@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
-//import { nanoid } from "nanoid";
 
 
 export default function Question(props) {
-    console.log('#############Question Component rendered#############')
-    const [allChoices, setAllChoices] = useState({
-        question: '',
-        choices: [],
-        userAnswer: '',
-        correctAnswer: ''
-    });
+    const [allChoices, setAllChoices] = useState([]);
     const [userChoice, setUserChoice] = useState('');
 
 
@@ -19,14 +12,6 @@ export default function Question(props) {
     }
 
     useEffect(() => {
-        function createAnswerObj(question, choices, correctAnswer) {
-            return {
-                question: question,
-                choices: choices,
-                userAnswer: '',
-                correctAnswer: correctAnswer
-            }
-        }
 
         const shuffleArray = array => array.map(a => ({ sort: Math.random(), value: a })).sort((a, b) => a.sort - b.sort).map(a => a.value);
         let choices = [];
@@ -38,20 +23,20 @@ export default function Question(props) {
                 choices.push({ value: shuffledAnswers[i], isSelected: false })
             }
 
-            setAllChoices(() => createAnswerObj(props.question.question, choices, props.question.correct_answer));
+            setAllChoices(choices);
 
         } else {
             let answers = [{ value: 'True', isSelected: false }, { value: 'False', isSelected: false }];
 
-            setAllChoices(() => createAnswerObj(props.question.question, answers, props.question.correct_answer))
+            setAllChoices(answers)
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    console.log(props.question.correct_answer)
-    let content;
+
+    let answerElements;
     if (props.isAnswered) {
-        content = allChoices.choices && allChoices.choices.map(answer => <button
+        answerElements = allChoices.length > 1 && allChoices.map(answer => <button
             key={answer.value}
             className={userChoice === props.question.correct_answer && userChoice === answer.value ?
                 'btn-answer-correct' :
@@ -60,7 +45,7 @@ export default function Question(props) {
             onClick={() => selectAnswer(answer.value)} >{decodeURIComponent(answer.value)}</button>)
 
     } else {
-        content = allChoices.choices && allChoices.choices.map(answer => <button
+        answerElements = allChoices.length > 1 && allChoices.map(answer => <button
             key={answer.value}
             className={answer.value === userChoice ? 'btn-answer-selected' : 'btn-answer'}
             onClick={() => selectAnswer(answer.value)} >{decodeURIComponent(answer.value)}</button>)
@@ -70,13 +55,7 @@ export default function Question(props) {
     return (
         <div>
             <p>{decodeURIComponent(props.question.question)}</p>
-            {/*             {allChoices.choices && allChoices.choices.map(answer => <button
-                key={answer.value}
-                className={answer.value === userChoice ? 'btn-answer-selected' : 'btn-answer'}
-                onClick={() => selectAnswer(answer.value)} >{decodeURIComponent(answer.value)}</button>)}
- */}
-
-            {content}
+            {answerElements}
             <hr />
         </div>
     )

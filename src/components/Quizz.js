@@ -11,13 +11,10 @@ export default function Quizz() {
     const [score, setScore] = useState(0);
     const [isAnswered, setIsAnswered] = useState(false)
 
-    console.log('window rendered')
-
     useEffect(() => {
         fetch("https://opentdb.com/api.php?amount=5&encode=url3986")
             .then(response => response.json())
             .then(data => setData(data['results']))
-        console.log('data fetched')
     }, [])
 
     function saveUserAnswers(question, userAnswer, correctAnswer) {
@@ -57,19 +54,11 @@ export default function Quizz() {
 
     const navigate = useNavigate();
     function reset() {
-        //fetch("https://opentdb.com/api.php?amount=5&encode=url3986")
-        //    .then(response => response.json())
-        //    .then(data => setData(data['results']))
-        //console.log('data fetched')
 
-        navigate('/') // essayer window.location.reload(); comme pour notepad qui n'utilise pas React Router 6 par contre
+        navigate('/')
         //setUserAnswers([])
         //setIsAnswered(false)
         //setScore(0)
-    }
-
-    if (isAnswered) {
-
     }
 
     const { innerWidth, innerHeight } = window;
