@@ -11,7 +11,7 @@ export default function Home() {
     numberOfQuestionsElements.unshift(<option key={0} >Select a number</option>)
 
     const difficultyLevelElements = difficultyLevelArray.map(level => <option key={level} value={level} >{level}</option>);
-    difficultyLevelElements.unshift(<option key={0} >Select a level of difficulty</option>)
+    difficultyLevelElements.unshift(<option key={0} >Select a difficulty</option>)
 
 
     function handleNumberChange(event) {

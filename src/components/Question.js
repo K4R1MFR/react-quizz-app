@@ -38,7 +38,7 @@ export default function Question(props) {
     if (props.isAnswered) {
         answerElements = allChoices.length > 1 && allChoices.map(answer => <button
             key={answer.value}
-            disabled="true"
+            disabled={true}
             className={userChoice === props.question.correct_answer && userChoice === answer.value ?
                 'btn-answer-correct' :
                 userChoice === answer.value ? 'btn-answer-incorrect' :
@@ -55,7 +55,8 @@ export default function Question(props) {
 
     return (
         <div>
-            <p>{decodeURIComponent(props.question.question)}</p>
+            <p className="question" >{decodeURIComponent(props.question.question)}</p>
+            <br />
             {answerElements}
             <hr />
         </div>
