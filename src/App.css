@@ -18,6 +18,24 @@ main {
   border-radius: 20px;
 }
 
+.title {
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+label {
+  font-size: large;
+  font-weight: 600;
+}
+
+select {
+  border-radius: 20px;
+  color: #293264;
+  border-color: #293264;
+  font-size: medium;
+  font-weight: 500;
+}
+
 .btn-start {
   margin: 10px;
   width: 150px;

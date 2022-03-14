@@ -38,6 +38,7 @@ export default function Question(props) {
     if (props.isAnswered) {
         answerElements = allChoices.length > 1 && allChoices.map(answer => <button
             key={answer.value}
+            disabled="true"
             className={userChoice === props.question.correct_answer && userChoice === answer.value ?
                 'btn-answer-correct' :
                 userChoice === answer.value ? 'btn-answer-incorrect' :

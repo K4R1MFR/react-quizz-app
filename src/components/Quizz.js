@@ -14,7 +14,7 @@ export default function Quizz() {
     let params = useParams();
 
     useEffect(() => {
-        fetch(`https://opentdb.com/api.php?amount=${params.numberOfQuestions}&encode=url3986`)
+        fetch(`https://opentdb.com/api.php?amount=${params.numberOfQuestions}&difficulty=${params.difficulty}&encode=url3986`)
             .then(response => response.json())
             .then(data => setData(data['results']))
         // eslint-disable-next-line react-hooks/exhaustive-deps
