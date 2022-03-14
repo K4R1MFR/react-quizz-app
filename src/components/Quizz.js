@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Question from "./Question";
 import Confetti from "react-confetti";
 import loadingGIF from "../images/Spinner-loading-1s-200px.gif";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 export default function Quizz() {
@@ -11,10 +11,13 @@ export default function Quizz() {
     const [score, setScore] = useState(0);
     const [isAnswered, setIsAnswered] = useState(false)
 
+    let params = useParams();
+
     useEffect(() => {
-        fetch("https://opentdb.com/api.php?amount=5&encode=url3986")
+        fetch(`https://opentdb.com/api.php?amount=${params.numberOfQuestions}&encode=url3986`)
             .then(response => response.json())
             .then(data => setData(data['results']))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     function saveUserAnswers(question, userAnswer, correctAnswer) {
@@ -66,7 +69,7 @@ export default function Quizz() {
     const questionElements = data.map(x => <Question key={x.question} question={x} saveUserAnswers={saveUserAnswers} isAnswered={isAnswered} />)
     return (
         <main>
-            {data.length > 1 && score === data.length && <Confetti width={innerWidth} height={innerHeight} />}
+            {data.length > 0 && score === data.length && <Confetti width={innerWidth} height={innerHeight} />}
             {data < 1 ?
                 <img src={loadingGIF} alt="loading gif" /> :
                 <div>
