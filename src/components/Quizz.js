@@ -58,7 +58,7 @@ export default function Quizz() {
     const navigate = useNavigate();
     function reset() {
 
-        navigate('/')
+        navigate(`/${params.numberOfQuestions}/${params.difficulty}`)
         //setUserAnswers([])
         //setIsAnswered(false)
         //setScore(0)

@@ -1,11 +1,23 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom"
 
 export default function Home() {
     const [numberOfQuestions, setNumberOfQuestions] = useState(0);
     const [difficulty, setDifficulty] = useState("")
     const numberOfQuestionsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const difficultyLevelArray = ["easy", "medium", "hard"]
+
+    let { numOfQuestionsParam, difficultyParam } = useParams();
+
+    useEffect(() => {
+        if (numOfQuestionsParam !== undefined) {
+            setNumberOfQuestions(parseInt(numOfQuestionsParam))
+        }
+        if (difficultyParam !== undefined) {
+            setDifficulty(difficultyParam)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const numberOfQuestionsElements = numberOfQuestionsArray.map(number => <option key={number} value={number} >{number}</option>);
     numberOfQuestionsElements.unshift(<option key={0} >Select a number</option>)
@@ -39,14 +51,14 @@ export default function Home() {
             <h2>Test your knowledge with this Trivial Quizz.</h2>
 
             <label htmlFor="difficulty" className="label" >difficulty: </label>
-            <select name="difficulty" id="difficulty" onChange={handleDifficultyChange} >
+            <select name="difficulty" value={difficulty} id="difficulty" onChange={handleDifficultyChange} >
                 {difficultyLevelElements}
             </select>
 
             <br />
 
             <label htmlFor="numberOfQuestions">number of questions: </label>
-            <select name="numberOfQuestions" id="numberOfQuestions" onChange={handleNumberChange} >
+            <select name="numberOfQuestions" value={numberOfQuestions} id="numberOfQuestions" onChange={handleNumberChange} >
                 {numberOfQuestionsElements}
             </select>
 

@@ -15,6 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/:numOfQuestionsParam/:difficultyParam' element={<Home />} />
           <Route path='/quizz/:numberOfQuestions/:difficulty' element={<Quizz />} />
         </Routes>
       </BrowserRouter>

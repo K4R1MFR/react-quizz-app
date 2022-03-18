@@ -24,7 +24,7 @@ main {
 }
 
 label {
-  font-size: large;
+  font-size: x-large;
   font-weight: 600;
 }
 
@@ -33,7 +33,7 @@ select {
   border-radius: 20px;
   color: #293264;
   border-color: #293264;
-  font-size: medium;
+  font-size: larger;
   font-weight: 500;
 }
 
