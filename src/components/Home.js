@@ -68,7 +68,7 @@ export default function Home() {
                     onClick={navigateToQuizz}>Start Quiz</button>
                 <button
                     className="displayLeaderboard"
-                    onClick={() => setDisplayLeaderboard(prevState => !prevState)}>Display Leaderboard</button>
+                    onClick={() => setDisplayLeaderboard(prevState => !prevState)}>{displayLeaderboard ? 'Hide' : 'Display'} Leaderboard</button>
                 {displayLeaderboard ? <Leaderboard /> : ''}
 
             </div>

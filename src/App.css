@@ -31,10 +31,11 @@ label {
 select {
   margin-bottom: 5px;
   border-radius: 20px;
-  color: #293264;
-  border-color: #293264;
+  color: lightblue;
+  border-color: lightblue;
+  background-color: #293264;
   font-size: large;
-  font-weight: 500;
+  font-weight: 600;
   text-align-last: center;
   width: max-content;
 }
@@ -59,11 +60,14 @@ select {
 }
 
 .displayLeaderboard {
+  margin-top: 10px;
   margin-bottom: 10px;
+  padding: 6px;
   border-radius: 20px;
   border-color: #293264;
-  background-color: #293264;
-  color: lightblue;
+  background-color: lightblue;
+  color: #293264;
+  font-weight: bold;
   cursor: context-menu;
 }
 
