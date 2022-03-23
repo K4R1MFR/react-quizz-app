@@ -3,6 +3,7 @@ import Question from "./Question";
 import Confetti from "react-confetti";
 import loadingGIF from "../images/Spinner-loading-1s-200px.gif";
 import { useNavigate, useParams } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 
 export default function Quizz() {
@@ -10,6 +11,8 @@ export default function Quizz() {
     const [userAnswers, setUserAnswers] = useState([]);
     const [score, setScore] = useState(0);
     const [isAnswered, setIsAnswered] = useState(false)
+    const [userName, setUserName] = useState("");
+    const [isSaved, setIsSaved] = useState(false);
 
     let params = useParams();
 
@@ -55,6 +58,17 @@ export default function Quizz() {
         }
     }
 
+    async function saveOnLeaderboard(userName, userScore, userScoreOutOf) {
+        let { data, error, status } = await supabase
+            .from('Leaderboard')
+            .insert([
+                { name: userName, score: userScore, outOf: userScoreOutOf }
+            ]);
+
+        setIsSaved(true);
+        console.log('data: ', data, 'error: ', error, 'status: ', status);
+    }
+
     const navigate = useNavigate();
     function reset() {
 
@@ -64,22 +78,51 @@ export default function Quizz() {
         //setScore(0)
     }
 
-    const { innerWidth, innerHeight } = window;
+    function userInputHandler(event) {
+        setUserName(event.target.value)
+    }
+
 
     const questionElements = data.map(x => <Question key={x.question} question={x} saveUserAnswers={saveUserAnswers} isAnswered={isAnswered} />)
+
+    const inputLeaderboard =
+        <div>
+            {isSaved === false ?
+                <div>
+                    <div>You can save your score into the Leaderboard if you would like.</div>
+                    <div>Enter your name here to do so:</div>
+                    <input
+                        type="text"
+                        value={userName}
+                        onChange={userInputHandler} ></input>
+                    <input
+                        type="submit"
+                        onClick={() => saveOnLeaderboard(userName, score, userAnswers.length)} ></input>
+                    <div>New entry: {userName} - score: {score}/{userAnswers.length}</div>
+                </div> :
+                <div>Your score is saved!</div>}
+        </div>
+
+    const { innerWidth, innerHeight } = window;
     return (
         <main>
+            {console.log('Quizz page rendered')}
+
             {data.length > 0 && score === data.length && <Confetti width={innerWidth} height={innerHeight} />}
             {data < 1 ?
                 <img src={loadingGIF} alt="loading gif" /> :
                 <div>
                     {questionElements}
-                    {isAnswered ? <div>You scored {score}/{userAnswers.length} correct answers.</div> : ''}
+                    {isAnswered ?
+                        <div>You scored {score} out of {userAnswers.length} correct answers.</div> :
+                        ''}
                     <button
                         className="btn-check-answer"
                         onClick={isAnswered ? reset : checkAnswers} >{isAnswered ? 'Play Again' : 'Check Answers'}
                     </button>
                 </div>}
+            {isAnswered && score !== 0 ? inputLeaderboard : ''}
+            {console.log('score !== 0: ', Number(score) !== 0, score)}
         </main>
     )
 }

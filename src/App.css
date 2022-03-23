@@ -49,6 +49,12 @@ select {
   font-weight: bolder;
 }
 
+.leaderboard {
+  margin: 20px;
+  width: auto;
+  height: 150px;
+}
+
 .question {
   font-size: large;
   font-weight: bolder;

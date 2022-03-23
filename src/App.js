@@ -8,7 +8,6 @@ import {
 import Home from './components/Home';
 import Quizz from './components/Quizz';
 
-
 function App() {
   return (
     <main className="App">

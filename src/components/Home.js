@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom";
+import Leaderboard from "./Leaderboard";
+
 
 export default function Home() {
     const [numberOfQuestions, setNumberOfQuestions] = useState(0);
@@ -46,6 +48,7 @@ export default function Home() {
 
     return (
         <section>
+            {console.log('Home page rendered')}
             <h1 className="title" >Quizz</h1>
 
             <h2>Test your knowledge with this Trivial Quizz.</h2>
@@ -67,6 +70,7 @@ export default function Home() {
             <button
                 className="btn-start"
                 onClick={navigateToQuizz}>Start Quiz</button>
+            <Leaderboard />
         </section>
     )
 }
