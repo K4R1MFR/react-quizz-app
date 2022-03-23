@@ -39,7 +39,7 @@ select {
   width: max-content;
 }
 
-.optionsContainer {
+.menuContainer {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -58,10 +58,22 @@ select {
   font-weight: bolder;
 }
 
+.displayLeaderboard {
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border-color: #293264;
+  background-color: #293264;
+  color: lightblue;
+  cursor: context-menu;
+}
+
 .leaderboard {
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 120px;
   width: auto;
-  height: 150px;
+  height: 100px;
 }
 
 .question {
@@ -128,7 +140,28 @@ select {
 }
 
 .leaderboardInput {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.usernameInput {
+  border-radius: 20px;
+  border-color: #293264;
+  background-color: lightblue;
+  color: #293264;
+  font-size: medium;
+  font-weight: bold;
+  margin: 5px;
+  padding: 8px;
+}
+
+.usernameSubmit {
+  border-radius: 20px;
+  margin: 5px;
+  padding: 10px;
+  background-color: #293264;
+  color: lightblue;
+  font-size: small;
+  font-weight: bold;
 }
 
 .errorMessage {

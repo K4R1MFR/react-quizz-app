@@ -8,6 +8,7 @@ export default function Home() {
     const [difficulty, setDifficulty] = useState("")
     const numberOfQuestionsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const difficultyLevelArray = ["easy", "medium", "hard"]
+    const [displayLeaderboard, setDisplayLeaderboard] = useState(false);
 
     let { numOfQuestionsParam, difficultyParam } = useParams();
 
@@ -51,7 +52,7 @@ export default function Home() {
             <h1 className="title" >Quizz</h1>
 
             <h2>Test your knowledge with this Trivial Quizz.</h2>
-            <div className="optionsContainer" >
+            <div className="menuContainer" >
                 <label htmlFor="difficulty" className="label" >difficulty: </label>
                 <select name="difficulty" value={difficulty} id="difficulty" onChange={handleDifficultyChange} >
                     {difficultyLevelElements}
@@ -61,12 +62,16 @@ export default function Home() {
                 <select name="numberOfQuestions" value={numberOfQuestions} id="numberOfQuestions" onChange={handleNumberChange} >
                     {numberOfQuestionsElements}
                 </select>
-            </div>
 
-            <button
-                className="btn-start"
-                onClick={navigateToQuizz}>Start Quiz</button>
-            <Leaderboard />
+                <button
+                    className="btn-start"
+                    onClick={navigateToQuizz}>Start Quiz</button>
+                <button
+                    className="displayLeaderboard"
+                    onClick={() => setDisplayLeaderboard(prevState => !prevState)}>Display Leaderboard</button>
+                {displayLeaderboard ? <Leaderboard /> : ''}
+
+            </div>
         </section>
     )
 }

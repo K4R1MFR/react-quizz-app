@@ -88,7 +88,12 @@ export default function Quizz() {
     }
 
 
-    const questionElements = data.map(x => <Question key={x.question} question={x} saveUserAnswers={saveUserAnswers} isAnswered={isAnswered} />)
+    const questionElements = data.map(x => (
+        <Question
+            key={x.question}
+            question={x}
+            saveUserAnswers={saveUserAnswers}
+            isAnswered={isAnswered} />))
 
     const inputLeaderboard =
         <div>
@@ -97,10 +102,12 @@ export default function Quizz() {
                     <div> If you would like, you can save your score into the leaderboard.</div>
                     <div>Enter your name here to do so:</div>
                     <input
+                        className="usernameInput"
                         type="text"
                         value={userName}
                         onChange={userInputHandler} ></input>
                     <input
+                        className="usernameSubmit"
                         type="submit"
                         onClick={() => saveOnLeaderboard(userName, score, userAnswers.length)} ></input>
                     <div className="errorMessage" >{errorMessage}</div>

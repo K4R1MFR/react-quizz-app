@@ -10,7 +10,12 @@ export default function Leaderboard() {
                 .from('Leaderboard')
                 .select('id, created_at, name, score, outOf');
 
-            setLeaderboardData(data)
+            let orderedLeaderboard = data.sort(function (a, b) {
+                return a.score - b.score;
+            });
+            let firstTenData = orderedLeaderboard.reverse().slice(0, 10)
+
+            setLeaderboardData(firstTenData)
             console.log('Supabase --> ', 'data: ', data, 'error: ', error, 'status: ', status);
         }
 
@@ -21,13 +26,17 @@ export default function Leaderboard() {
 
 
 
-    const entryElements = leaderboardData.map(entry => <div key={entry.id} >{entry.name} - score: {entry.score} out of {entry.outOf}</div>)
+    const entryElements = leaderboardData.map((entry, index) => (
+        <div key={entry.id} >
+            {index + 1}................{entry.name} - {entry.score} out of {entry.outOf}
+        </div>
+    ))
     return (
-        <div className='leaderboard' >
-            <h3>Leaderboard</h3>
+        <div>
+            <h3>Leaderboard - Top 10</h3>
             {leaderboardData < 1 ?
                 '' :
-                <div>
+                <div className='leaderboard'>
                     {entryElements}
                 </div>}
 
