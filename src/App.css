@@ -35,6 +35,15 @@ select {
   border-color: #293264;
   font-size: large;
   font-weight: 500;
+  text-align-last: center;
+  width: max-content;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .btn-start {
@@ -116,4 +125,12 @@ select {
 .question {
   vertical-align: middle;
   display: inline-block;
+}
+
+.leaderboardInput {
+  margin-bottom: 20px;
+}
+
+.errorMessage {
+  color: red;
 }

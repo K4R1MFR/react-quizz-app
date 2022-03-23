@@ -22,10 +22,10 @@ export default function Home() {
     }, [])
 
     const numberOfQuestionsElements = numberOfQuestionsArray.map(number => <option key={number} value={number} >{number}</option>);
-    numberOfQuestionsElements.unshift(<option key={0} >Select a number</option>)
+    numberOfQuestionsElements.unshift(<option key={0} value={0} >Select a number</option>)
 
     const difficultyLevelElements = difficultyLevelArray.map(level => <option key={level} value={level} >{level}</option>);
-    difficultyLevelElements.unshift(<option key={0} >Select a difficulty</option>)
+    difficultyLevelElements.unshift(<option key={0} value='' >Select a difficulty</option>)
 
 
     function handleNumberChange(event) {
@@ -48,24 +48,20 @@ export default function Home() {
 
     return (
         <section>
-            {console.log('Home page rendered')}
             <h1 className="title" >Quizz</h1>
 
             <h2>Test your knowledge with this Trivial Quizz.</h2>
+            <div className="optionsContainer" >
+                <label htmlFor="difficulty" className="label" >difficulty: </label>
+                <select name="difficulty" value={difficulty} id="difficulty" onChange={handleDifficultyChange} >
+                    {difficultyLevelElements}
+                </select>
 
-            <label htmlFor="difficulty" className="label" >difficulty: </label>
-            <select name="difficulty" value={difficulty} id="difficulty" onChange={handleDifficultyChange} >
-                {difficultyLevelElements}
-            </select>
-
-            <br />
-
-            <label htmlFor="numberOfQuestions">number of questions: </label>
-            <select name="numberOfQuestions" value={numberOfQuestions} id="numberOfQuestions" onChange={handleNumberChange} >
-                {numberOfQuestionsElements}
-            </select>
-
-            <br />
+                <label htmlFor="numberOfQuestions">number of questions: </label>
+                <select name="numberOfQuestions" value={numberOfQuestions} id="numberOfQuestions" onChange={handleNumberChange} >
+                    {numberOfQuestionsElements}
+                </select>
+            </div>
 
             <button
                 className="btn-start"
