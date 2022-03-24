@@ -26,19 +26,19 @@ export default function Leaderboard() {
 
 
 
-    const entryElements = leaderboardData.map((entry, index) => (
-        <div key={entry.id} >
-            {index + 1}................{entry.name} - {entry.score} out of {entry.outOf}
-        </div>
+    const entryElements = leaderboardData.map(entry => (
+        <li key={entry.id} >
+            {entry.name} - {entry.score} out of {entry.outOf}
+        </li>
     ))
     return (
         <div>
             <h3>Leaderboard - Top 10</h3>
             {leaderboardData < 1 ?
                 '' :
-                <div className='leaderboard'>
+                <ol className='leaderboard'>
                     {entryElements}
-                </div>}
+                </ol>}
 
         </div>
     )

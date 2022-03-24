@@ -38,6 +38,7 @@ select {
   font-weight: 600;
   text-align-last: center;
   width: max-content;
+  padding: 8px;
 }
 
 .menuContainer {
